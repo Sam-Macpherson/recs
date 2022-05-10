@@ -1,0 +1,19 @@
+/* Normalized styles mostly */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+body {
+  margin: 0;
+}
+
+body {
+  font: 100% "Google Sans", "Roboto", sans-serif; /* "Google Sans" is in typography */
+  line-height: 1.5; /* Not 1.48 because chrome and firefox round slightly differently */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; /* firefox font smoothing */
+}
