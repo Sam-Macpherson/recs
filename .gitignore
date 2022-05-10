@@ -1,0 +1,20 @@
+
+# JS
+node_modules/*
+.parcel-cache
+dist/
+
+# Python
+lib/
+bin/
+pyvenv.cfg
+__pycache__/
+*.pyc
+.mypy_cache/
+pyvenv.cfg
+local.py
+
+djcelery/
+
+# Other
+env_settings.sh
