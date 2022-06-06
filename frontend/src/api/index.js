@@ -16,5 +16,6 @@ const fetchData = ({ queryKey: [...routeSegments] }) => {
 const useFetch = ({ routeSegments = [], queryParams }) =>
   useQuery([...routeSegments, queryParams || {}], fetchData);
 
+export { QueryClientProvider } from "./queryClient";
 export { setAxiosDefaults, useFetch };
 

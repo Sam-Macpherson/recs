@@ -6,21 +6,21 @@ from base import BaseModel
 
 class UserGroup(BaseModel):
     """
-    Model to represent a group of users who can see updates on eachothers' recommmendation
+    Model to represent a group of users who can see updates on eachothers' recommendation
     submissions, progress, and have discussions.
     """
     name = models.CharField(max_length=128, blank=False)
     description = models.CharField(max_length=512, blank=True)
     # group picture
-    owner = models.ForeignKey(User, on_delete=models.SET_NULL)
+    owner = models.ForeignKey(User, related_name='user_groups', on_delete=models.CASCADE)
     users = models.ManyToManyField(
         User, help_text='The users in this group; does not include the owner.')
 
 
 class FriendRequest(BaseModel):
     """Model to represent a friend request from a user to another user."""
-    from_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    to_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    from_user = models.ForeignKey(User, related_name='friend_requests_from', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User, related_name='friend_requests_to', on_delete=models.CASCADE)
     expires_on = models.DateTimeField(null=True, blank=True)
 
 

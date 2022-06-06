@@ -39,14 +39,17 @@ class Piece(BaseModel):
         help_text='The rating this piece has in the real-world, based on whatever platform it '
                   'comes from, not from users on the site. Ranges from 0-10 with up to 2 decimal '
                   'places only. Not all sites use a scale out of 10, which is why we allow some '
-                  'decimals.')
+                  'decimals for the conversion; 4.33/5 => 8.67/10.')
+
+    def __str__(self):
+        return f'{self.name} ({self.get_category_display()})'
 
 
 class Recommendation(BaseModel):
     """The primary unit of the site. Users give each other recommendations."""
     piece = models.ForeignKey(Piece, on_delete=models.CASCADE)
-    giver = models.ForeignKey(User, on_delete=models.CASCADE)
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE)
+    giver = models.ForeignKey(User, related_name='recs_given', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(User, related_name='recs_received', on_delete=models.CASCADE)
 
     followed_on = models.DateTimeField(
         null=True, blank=True,
@@ -57,12 +60,14 @@ class Recommendation(BaseModel):
         help_text='The date the receiver decided to intentionally ignore this recommendation. For'
                   'example, "I am not going to read that book, sorry Jim."')
 
+    def __str__(self):
+        return f'{self.piece} ({self.giver}) -> ({self.receiver})'
+
 
 class Rating(BaseModel):
     """
-    A rating given to a recommendation. Users do not rate `Piece`s with this site, there
-    are tons of other tools available for that. Instead, users rate the quality of
-    recommendations received from other users.
+    A rating given to a recommendation. The rating will be applied to the piece via the recommendation. The site will
+    figure out the bounty of recommending a piece given the rating and the popularity of the piece.
     """
     # Track the receiver (the person casting the rating) through the recommendation.
     recommendation = models.ForeignKey(Recommendation, on_delete=models.CASCADE)
@@ -70,3 +75,6 @@ class Rating(BaseModel):
         validators=[MinValueValidator(0), MaxValueValidator(10)],
         help_text='The rating the recommendation receiver is giving this recommendation. The site '
                   'requires that all ratings be out of 10, and whole numbers only.')
+
+    def __str__(self):
+        return f'{self.recommendation.piece} ({self.recommendation.receiver}) {self.score}/10'
