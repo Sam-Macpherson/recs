@@ -2,7 +2,7 @@ import { useMatch, useLinkClickHandler } from "react-router-dom";
 
 import styled from "styled-components";
 import { ColorPalette, FontColors } from "../../../StylingConstants";
-import { FontSizes } from "../../../Typography";
+import {FontSizes, FontStyles} from "../../../Typography";
 
 const StyledNav = styled.nav`
   flex-shrink: 0;
@@ -38,7 +38,7 @@ const StyledNavItemList = styled.div`
     border-top: 1px solid ${ColorPalette.LIGHT_ORANGE};
   }
   > :not(:first-child) {
-      margin-top: 4px;
+    margin-top: 4px;
   }
 `;
 
@@ -46,6 +46,8 @@ const StyledNavItem = styled.div`
   padding: 8px 16px;
   border-radius: 4px;
   ${FontColors.LIGHT_WHITE}
+  ${FontSizes.MEDIUM}
+  ${FontStyles.OVERLINE}
 
   ${props => 
   props.selected 

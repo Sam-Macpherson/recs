@@ -1,8 +1,15 @@
+from accounts.serializers import UserSerializer
 from .models import Piece, Recommendation, Rating
 from rest_framework import serializers
 
 
 class PieceSerializer(serializers.ModelSerializer):
+    category = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_category(obj):
+        return obj.get_category_display()
+
     class Meta:
         model = Piece
         fields = (
@@ -11,6 +18,10 @@ class PieceSerializer(serializers.ModelSerializer):
 
 
 class RecommendationSerializer(serializers.ModelSerializer):
+    giver = UserSerializer()
+    receiver = UserSerializer()
+    piece = PieceSerializer()
+
     class Meta:
         model = Recommendation
         fields = (

@@ -3,7 +3,10 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { QueryClientProvider } from "api";
 import {ColorPalette, FontColors} from "../../StylingConstants";
 import Navigation from "./Navigation";
-import RecommendationsView from "./RecommendationsView";
+import BrowseView from "./BrowseView";
+import RateView from "./RateView";
+import FriendsView from "./FriendsView";
+import GroupsView from "./GroupsView";
 
 const Layout = styled.div`
   background-color: ${ColorPalette.GRAY};
@@ -30,10 +33,10 @@ const RecsApp = () => (
         <StyledMain>
           <Routes path="/">
             <Route index element={<Navigate to="browse/" replace />} />
-            <Route path="browse/" element={<RecommendationsView />} />
-            <Route path="rate/" element={<RecommendationsView />} />
-            <Route path="friends/" element={<RecommendationsView />} />
-            <Route path="groups/" element={<RecommendationsView />} />
+            <Route path="browse/" element={<BrowseView />} />
+            <Route path="rate/" element={<RateView />} />
+            <Route path="friends/" element={<FriendsView />} />
+            <Route path="groups/" element={<GroupsView />} />
           </Routes>
         </StyledMain>
       </Layout>

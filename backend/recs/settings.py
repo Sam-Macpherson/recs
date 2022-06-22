@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["localhost"]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:1234",
+    "http://localhost:53477"
 ]
 
 
