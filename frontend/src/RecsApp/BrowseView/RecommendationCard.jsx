@@ -29,8 +29,7 @@ const getIcon = (category, size = 24) => {
 }
 
 const StyledCard = styled(Card)`
-  display: flex;
-  justify-content: space-between;
+  height: 200px;
   background-image: 
     linear-gradient(
       rgba(0, 0, 0, 0.75), 
@@ -40,7 +39,6 @@ const StyledCard = styled(Card)`
   background-filter: grayscale(50%);
   background-position: center;
   background-size: cover;
-  height: 200px;
 `;
 
 const StyledCardBody = styled.div`
@@ -48,13 +46,13 @@ const StyledCardBody = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  height: 100%;
 `;
 
 const StyledHeader = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
-  margin-bottom: 8px;
 `;
 
 const StyledFooter = styled.div`
@@ -65,7 +63,6 @@ const StyledFooter = styled.div`
 const StyledChain = styled.div`
   display: flex;
   align-items: center;
-  ${FontSizes.MEDIUM};
   
   > :not(:last-child) {
     margin-right: 8px;
