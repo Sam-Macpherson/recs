@@ -6,8 +6,8 @@ import { Tv } from "@styled-icons/boxicons-regular/Tv";
 import { Music } from "@styled-icons/boxicons-regular/Music";
 import { Food } from "@styled-icons/fluentui-system-regular/Food";
 import { QuestionMarkCircleOutline } from "@styled-icons/evaicons-outline/QuestionMarkCircleOutline";
-import { ArrowReturnRight } from "@styled-icons/bootstrap/ArrowReturnRight";
-import { FontSizes, FontWeights } from "../../../Typography";
+import { ArrowRight } from "@styled-icons/bootstrap/ArrowRight";
+import {FontSizes, FontStyles, FontWeights} from "../../../Typography";
 import { getShortName } from "../../utils";
 import {ColorPalette} from "../../../StylingConstants";
 
@@ -31,7 +31,12 @@ const getIcon = (category, size = 24) => {
 const StyledCard = styled(Card)`
   display: flex;
   justify-content: space-between;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url(https://m.media-amazon.com/images/M/MV5BNzc5MTczNDQtNDFjNi00ZDU5LWFkNzItOTE1NzQzMzdhNzMxXkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_.jpg);
+  background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.75), 
+      rgba(0, 0, 0, 0.75)
+    ), 
+    url(https://m.media-amazon.com/images/M/MV5BNzc5MTczNDQtNDFjNi00ZDU5LWFkNzItOTE1NzQzMzdhNzMxXkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_.jpg);
   background-filter: grayscale(50%);
   background-position: center;
   background-size: cover;
@@ -66,15 +71,11 @@ const StyledChain = styled.div`
     margin-right: 8px;
     display: flex;
   }
-  
-  > :nth-child(3) {
-    display: flex;
-    align-items: center;
-  }
 `;
 
 const StyledPieceTitle = styled.span`
-  ${FontWeights.BOLD}
+  ${FontSizes.LARGE}
+  margin-bottom: 4px;
 `;
 
 const RecommendationCard = ({ rec }) => {
@@ -88,13 +89,11 @@ const RecommendationCard = ({ rec }) => {
           <StyledPieceTitle>{rec.piece.name}</StyledPieceTitle>
           <StyledChain>
             <Avatar size={24}/>
-            <div>
-              {getShortName(rec.giver)}
-              &nbsp;
-              <ArrowReturnRight stroke={ColorPalette.ORANGE} color={ColorPalette.ORANGE} size={16} />
-              &nbsp;
-              {getShortName(rec.receiver)}
-            </div>
+            <span>{getShortName(rec.giver)}</span>
+            &nbsp;
+            <ArrowRight stroke={ColorPalette.WHITE} color={ColorPalette.ORANGE} size={16} />
+            &nbsp;
+            <span>{getShortName(rec.receiver)}</span>
             <Avatar size={24}/>
           </StyledChain>
         </StyledFooter>

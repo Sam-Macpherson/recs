@@ -27,11 +27,16 @@ const BOLD = {
 const sizes = {
   12: "0.75rem",
   16: "1rem",
+  18: "1.125rem",
   24: "1.5rem",
 };
 
-const LARGE = {
+const HUGE = {
   "font-size": sizes[24],
+}
+
+const LARGE = {
+  "font-size": sizes[18],
 }
 
 const MEDIUM = {
@@ -53,6 +58,7 @@ const FontSizes = {
   SMALL: SMALL,
   MEDIUM: MEDIUM,
   LARGE: LARGE,
+  HUGE: HUGE,
 }
 
 const FontStyles = {

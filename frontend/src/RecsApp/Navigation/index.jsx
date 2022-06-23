@@ -19,7 +19,7 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 8px 0 32px;
-  ${FontSizes.LARGE}
+  ${FontSizes.HUGE}
 `;
 
 const StyledNavItemList = styled.div`

@@ -4,7 +4,7 @@ import {FontSizes, FontStyles} from "../../../Typography";
 
 
 const StyledHeader = styled.div`
-  ${FontSizes.LARGE};
+  ${FontSizes.HUGE};
   ${FontStyles.OVERLINE};
   margin-bottom: 16px;
 `;
