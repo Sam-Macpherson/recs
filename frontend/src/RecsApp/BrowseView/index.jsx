@@ -2,14 +2,12 @@ import styled from "styled-components";
 import { useFetch } from "../../api";
 import { ViewHeader } from "../SharedComponents";
 import RecommendationCard from "./RecommendationCard";
-import { CameraMovie } from "@styled-icons/boxicons-regular/CameraMovie";
-
 
 const GridLayout = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 12px;
-`
+`;
 
 const BrowseView = () => {
   const { isLoading, data } = useFetch({ routeSegments: ["recs", ]});
@@ -21,8 +19,8 @@ const BrowseView = () => {
         {
           isLoading ?
             <div>Loading...</div> :
-            data.map((datum, i) => (
-              <RecommendationCard rec={datum} key={`rec_${i}`} />
+            data.map((rec, i) => (
+              <RecommendationCard rec={rec} key={`rec_${i}`} />
             ))
         }
       </GridLayout>

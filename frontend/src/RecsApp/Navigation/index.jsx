@@ -3,6 +3,7 @@ import { useMatch, useLinkClickHandler } from "react-router-dom";
 import styled from "styled-components";
 import { ColorPalette, FontColors } from "../../../StylingConstants";
 import {FontSizes, FontStyles} from "../../../Typography";
+import {Avatar} from "../BaseComponents";
 
 const StyledNav = styled.nav`
   flex-shrink: 0;
@@ -19,16 +20,6 @@ const StyledHeader = styled.div`
   align-items: center;
   margin: 8px 0 32px;
   ${FontSizes.LARGE}
-`;
-
-const ProfileDropdown = styled.div` // WIP, will be the profile picture of the logged in user.
-  width: 36px;
-  height: 36px;
-  border: 2px solid ${ColorPalette.ORANGE};
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const StyledNavItemList = styled.div`
@@ -75,7 +66,7 @@ const Navigation = () => (
   <StyledNav>
     <StyledHeader>
       Get Rec'd
-      <ProfileDropdown>🦖</ProfileDropdown>
+      <Avatar />
     </StyledHeader>
     <StyledNavItemList>
       <NavigationLink to="/browse/" label="Browse" />

@@ -20,6 +20,10 @@ const fontWeights = {
   bold: "700",
 };
 
+const BOLD = {
+  "font-weight": fontWeights.bold,
+}
+
 const sizes = {
   12: "0.75rem",
   16: "1rem",
@@ -55,4 +59,10 @@ const FontStyles = {
   OVERLINE: OVERLINE,
 }
 
-export { FontSizes, FontStyles };
+const FontWeights = {
+  NORMAL: fontWeights.normal,
+  MEDIUM: fontWeights.medium,
+  BOLD: BOLD,
+}
+
+export { FontSizes, FontWeights, FontStyles };
