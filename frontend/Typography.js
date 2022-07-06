@@ -54,6 +54,12 @@ const OVERLINE = {
   "letter-spacing": letterSpacings.overline,
 }
 
+const SINGLE_LINE_ELLIPSIS = {
+  "white-space": "nowrap",
+  "text-overflow": "ellipsis",
+  "overflow": "hidden",
+}
+
 const FontSizes = {
   SMALL: SMALL,
   MEDIUM: MEDIUM,
@@ -63,6 +69,7 @@ const FontSizes = {
 
 const FontStyles = {
   OVERLINE: OVERLINE,
+  SINGLE_LINE_ELLIPSIS: SINGLE_LINE_ELLIPSIS,
 }
 
 const FontWeights = {

@@ -9,7 +9,7 @@ import { QuestionMarkCircleOutline } from "@styled-icons/evaicons-outline/Questi
 import { ArrowRight } from "@styled-icons/bootstrap/ArrowRight";
 import {FontSizes, FontStyles, FontWeights} from "../../../Typography";
 import { getShortName } from "../../utils";
-import {ColorPalette} from "../../../StylingConstants";
+import {ColorPalette, FontColors} from "../../../StylingConstants";
 
 const getIcon = (category, size = 24) => {
   switch(category) {
@@ -75,6 +75,14 @@ const StyledPieceTitle = styled.span`
   margin-bottom: 4px;
 `;
 
+const StyledPieceSubtitle = styled.span`
+  ${FontSizes.SMALL}
+  ${FontColors.LIGHT_WHITE}
+  ${FontStyles.SINGLE_LINE_ELLIPSIS}
+  width: 100%;
+  margin-bottom: 4px;  
+`
+
 const RecommendationCard = ({ rec }) => {
   return (
     <StyledCard>
@@ -84,6 +92,7 @@ const RecommendationCard = ({ rec }) => {
         </StyledHeader>
         <StyledFooter>
           <StyledPieceTitle>{rec.piece.name}</StyledPieceTitle>
+          <StyledPieceSubtitle title={rec.piece.description}>{rec.piece.description}</StyledPieceSubtitle>
           <StyledChain>
             <Avatar size={24}/>
             <span>{getShortName(rec.giver)}</span>

@@ -17,3 +17,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; /* firefox font smoothing */
 }
+
+button, input, textarea {
+  font-family: "Google Sans", "Roboto", sans-serif;
+}
+

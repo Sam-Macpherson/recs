@@ -34,11 +34,10 @@ const StyledNavItemList = styled.div`
 `;
 
 const StyledNavItem = styled.div`
-  padding: 8px 16px;
+  padding: 4px 8px;
   border-radius: 4px;
   ${FontColors.LIGHT_WHITE}
   ${FontSizes.MEDIUM}
-  ${FontStyles.OVERLINE}
 
   ${props => 
   props.selected 
