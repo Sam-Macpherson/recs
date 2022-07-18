@@ -11,6 +11,7 @@ const GridLayout = styled.div`
 
 const BrowseView = () => {
   const { isLoading, data } = useFetch({ routeSegments: ["recs", ]});
+
   console.log('data', data);
   return (
     <>
@@ -25,7 +26,6 @@ const BrowseView = () => {
         }
       </GridLayout>
     </>
-
   );
 }
 

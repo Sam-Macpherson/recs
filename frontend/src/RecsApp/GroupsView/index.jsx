@@ -1,20 +1,18 @@
 import styled from "styled-components";
 import { useFetch } from "../../api";
-import { Card } from "../BaseComponents";
 import { ViewHeader } from "../SharedComponents";
-
-const RecommendationCard = styled(Card)`
-`;
+import RecommendationCard from "../BrowseView/RecommendationCard";
 
 const GridLayout = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 12px;
-`
+`;
 
 const GroupsView = () => {
   const { isLoading, data } = useFetch({ routeSegments: ["recs", ]});
 
+  console.log('data', data);
   return (
     <>
       <ViewHeader title="Groups" />
@@ -22,11 +20,12 @@ const GroupsView = () => {
         {
           isLoading ?
             <div>Loading...</div> :
-            data.map((datum, i) => <RecommendationCard>{datum.piece}</RecommendationCard>)
+            data.map((rec, i) => (
+              <RecommendationCard rec={rec} key={`rec_${i}`} />
+            ))
         }
       </GridLayout>
     </>
-
   );
 }
 

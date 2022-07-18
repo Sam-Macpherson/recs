@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { FontSizes } from "../../../Typography";
-import { Button } from "../BaseComponents";
+import {Avatar, Button} from "../BaseComponents";
 
 
 const StyledHeader = styled.div`
@@ -24,8 +24,9 @@ const ViewHeader = ({ title }) => (
   <StyledHeader>
     {title}
     <StyledActionButtons>
-      <Button>Give</Button>
+      <Button primary>Give</Button>
       <Button>Request</Button>
+      <Avatar />
     </StyledActionButtons>
   </StyledHeader>
 );

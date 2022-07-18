@@ -7,6 +7,7 @@ import BrowseView from "./BrowseView";
 import RateView from "./RateView";
 import FriendsView from "./FriendsView";
 import GroupsView from "./GroupsView";
+import LoginView from "./LoginView";
 
 const Layout = styled.div`
   background-color: ${ColorPalette.GRAY};
@@ -21,7 +22,7 @@ const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 16px;
+  padding: 16px 16px 16px 34px;
   overflow-y: auto;
 `;
 
@@ -33,6 +34,7 @@ const RecsApp = () => (
         <StyledMain>
           <Routes path="/">
             <Route index element={<Navigate to="browse/" replace />} />
+            <Route path="login/" element={<LoginView />} />
             <Route path="browse/" element={<BrowseView />} />
             <Route path="rate/" element={<RateView />} />
             <Route path="friends/" element={<FriendsView />} />
