@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { FontSizes } from "../../../Typography";
-import {Avatar, Button} from "../BaseComponents";
-
+import { Avatar, Button, Input } from "../BaseComponents";
 
 const StyledHeader = styled.div`
   ${FontSizes.HUGE}
@@ -24,9 +23,18 @@ const ViewHeader = ({ title }) => (
   <StyledHeader>
     {title}
     <StyledActionButtons>
-      <Button primary>Give</Button>
-      <Button>Request</Button>
-      <Avatar />
+      {title === "Login" ? // Temporary while I figure out authentication.
+        <>
+          <Input placeholder="Email" />
+          <Input placeholder="Password" type="password" />
+          <Button primary>Login</Button>
+        </> :
+        <>
+          <Button primary>Give</Button>
+          <Button>Request</Button>
+          <Avatar />
+        </>
+      }
     </StyledActionButtons>
   </StyledHeader>
 );

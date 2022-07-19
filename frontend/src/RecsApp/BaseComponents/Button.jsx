@@ -1,6 +1,6 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 import { ColorPalette } from "../../../StylingConstants";
-import {FontSizes, FontStyles} from "../../../Typography";
+import { FontSizes } from "../../../Typography";
 
 
 const Button = styled.button`
