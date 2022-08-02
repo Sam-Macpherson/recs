@@ -10,7 +10,7 @@ const setAxiosDefaults = () => {
 
 const fetchData = ({ queryKey: [...routeSegments] }) => {
   const params = routeSegments.pop();
-  return axios.get(routeSegments.join("/") + "/", { params }).then(response => response.data);
+  return axios.get(routeSegments.join("/") + "/", { params, withCredentials: true }).then(response => response.data);
 };
 
 const useFetch = ({ routeSegments = [], queryParams }) =>

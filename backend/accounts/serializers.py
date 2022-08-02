@@ -4,14 +4,22 @@ from accounts.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
-    full_name = serializers.SerializerMethodField()
 
-    @staticmethod
-    def get_full_name(obj):
-        return obj.get_full_name()
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        instance = self.Meta.model(**validated_data)
+
+        if password is not None:
+            # Django provided, hashes password.
+            instance.set_password(password)
+        instance.save()
+        return instance
 
     class Meta:
         model = User
         fields = (
-            'full_name', 'give_rating', 'receive_rating', 'is_active',
+            'id', 'email', 'password', 'name'
         )
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }

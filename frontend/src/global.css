@@ -10,6 +10,13 @@ body {
   margin: 0;
 }
 
+form {
+  margin: 0;
+  margin-block-end: 0;
+  display: flex;
+  gap: 8px;
+}
+
 body {
   font: 100% "Google Sans", "Roboto", sans-serif; /* "Google Sans" is in typography */
   line-height: 1.5; /* Not 1.48 because chrome and firefox round slightly differently */

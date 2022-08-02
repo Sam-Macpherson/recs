@@ -87,10 +87,10 @@ const StyledNavItem = styled.div`
 
 const StyledToggleContainer = styled.div`
   position: absolute;
-  top: 16px;
+  top: 21px;
   right: -18px;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   border-radius: 40px;
   border: 4px solid ${ColorPalette.BLACK};
   background: ${ColorPalette.BLACK};
@@ -98,8 +98,8 @@ const StyledToggleContainer = styled.div`
 
 const StyledToggle = styled.div`
   z-index: 1;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   background: ${ColorPalette.LIGHT_ORANGE};
 
   &:hover {
@@ -112,7 +112,7 @@ const StyledToggle = styled.div`
     background: ${ColorPalette.LIGHT_ORANGE};
   }
   
-  border-radius: 40px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;

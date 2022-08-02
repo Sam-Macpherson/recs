@@ -8,6 +8,8 @@ import RateView from "./RateView";
 import FriendsView from "./FriendsView";
 import GroupsView from "./GroupsView";
 import LoginView from "./LoginView";
+import {useEffect, useState} from "react";
+import {getUser} from "../api/authenticate";
 
 const Layout = styled.div`
   background-color: ${ColorPalette.GRAY};
