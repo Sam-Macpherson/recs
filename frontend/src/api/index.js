@@ -32,7 +32,7 @@ client.interceptors.response.use(
       }
 
       if (error.response.status === 401 && originalRequest.url === baseURL + '/accounts/refresh/') {
-          window.location.href = '/auth/login/';
+          window.location.href = '/login/';
           return Promise.reject(error);
       }
       console.log(error.response.data.detail, error.response.status, error.response.statusText);

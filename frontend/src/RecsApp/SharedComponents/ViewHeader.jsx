@@ -73,7 +73,7 @@ const ViewHeader = ({ title }) => {
           <>
             <Button primary>Give</Button>
             <Button>Request</Button>
-            <Avatar image={user?.profile_picture}/>
+            <Avatar onClick={() => setRedirect('/logout/')}image={user?.profile_picture}/>
           </>
         }
       </StyledActionButtons>

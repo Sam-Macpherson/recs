@@ -15,7 +15,7 @@ const register = credentials =>
   client.post("accounts/register/", credentials);
 
 const getUser = (userId = 'me') =>
-  client.get(`accounts/${userId}/`).then(
+  client.get(`accounts/${userId}/profile/`).then(
     response => Promise.resolve(response.data)
   ).catch(error => {
     console.log(`Error fetching user profile for user ${userId}: `, error);

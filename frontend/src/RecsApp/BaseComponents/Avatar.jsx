@@ -10,15 +10,16 @@ const StyledContainer = styled.div` // WIP, will be used for profile icons.
   border-radius: 50%;
   display: flex;
   justify-content: center;
+  cursor: ${props => props.onClick ? 'pointer' : 'default'};
 `;
 
 /**
  * An avatar component used to display profile icons.
  * @returns {JSX.Element}
  */
-const Avatar = ({ image, size }) => {
+const Avatar = ({ image, size, ...props }) => {
   return (
-    <StyledContainer size={size}>
+    <StyledContainer size={size} {...props}>
       <img src={image} alt="🦖" width={size} height={size} />
     </StyledContainer>
   );

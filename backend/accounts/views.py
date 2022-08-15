@@ -34,6 +34,8 @@ class UserProfileView(generics.RetrieveAPIView):
                 user = request.user
             else:
                 user = User.objects.get(pk=uid)
+            if str(user) == 'AnonymousUser' or not user:
+                raise User.DoesNotExist()
             return Response(UserSerializer(user).data)
         except User.DoesNotExist:
             return Response(status=HTTP_404_NOT_FOUND, data={'detail': 'user not found.'})
