@@ -13,7 +13,7 @@ class PieceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Piece
         fields = (
-            'category', 'name', 'description', 'external_rating',
+            'category', 'name', 'description', 'external_rating', 'picture',
         )
 
 

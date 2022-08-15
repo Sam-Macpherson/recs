@@ -3,6 +3,18 @@ from django.db import models
 
 from accounts.models import User
 from base import BaseModel
+from recs import settings
+from recs.storage_backends import PublicImageStorage
+from django.core.files.storage import FileSystemStorage
+
+
+def image_filename(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_id/filename
+    return f'piece_{instance.id}/{instance.picture}'
+
+
+def select_storage():
+    return PublicImageStorage() if settings.USE_S3 else FileSystemStorage()
 
 
 class Piece(BaseModel):
@@ -33,7 +45,11 @@ class Piece(BaseModel):
     name = models.CharField(max_length=512, blank=False)
     # link to real-world content
     description = models.CharField(max_length=1024, blank=True)
-    # picture of piece
+    picture = models.ImageField(
+        null=True, blank=True,
+        storage=select_storage,
+        upload_to=image_filename,
+    )
     external_rating = models.DecimalField(
         max_digits=4, decimal_places=2, validators=[MinValueValidator(0), MaxValueValidator(10)],
         help_text='The rating this piece has in the real-world, based on whatever platform it '

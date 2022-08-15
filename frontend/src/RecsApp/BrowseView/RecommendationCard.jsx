@@ -35,7 +35,7 @@ const StyledCard = styled(Card)`
       rgba(0, 0, 0, 0.75), 
       rgba(0, 0, 0, 0.75)
     ), 
-    url(https://m.media-amazon.com/images/M/MV5BNzc5MTczNDQtNDFjNi00ZDU5LWFkNzItOTE1NzQzMzdhNzMxXkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_.jpg);
+    url(${props => props.$image});
   background-filter: grayscale(50%);
   background-position: center;
   background-size: cover;
@@ -85,7 +85,7 @@ const StyledPieceSubtitle = styled.span`
 
 const RecommendationCard = ({ rec }) => {
   return (
-    <StyledCard>
+    <StyledCard $image={rec.piece.picture}>
       <StyledCardBody>
         <StyledHeader>
           {getIcon(rec.piece.category)}
@@ -94,13 +94,13 @@ const RecommendationCard = ({ rec }) => {
           <StyledPieceTitle>{rec.piece.name}</StyledPieceTitle>
           <StyledPieceSubtitle title={rec.piece.description}>{rec.piece.description}</StyledPieceSubtitle>
           <StyledChain>
-            <Avatar size={24}/>
+            <Avatar size={24} image={rec.giver.profile_picture}/>
             <span>{getShortName(rec.giver)}</span>
             &nbsp;
             <ArrowRight stroke={ColorPalette.WHITE} color={ColorPalette.ORANGE} size={16} />
             &nbsp;
             <span>{getShortName(rec.receiver)}</span>
-            <Avatar size={24}/>
+            <Avatar size={24} image={rec.receiver.profile_picture}/>
           </StyledChain>
         </StyledFooter>
       </StyledCardBody>

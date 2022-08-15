@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 const StyledContainer = styled.div` // WIP, will be used for profile icons.
   width: ${props => props.size ? props.size : 36}px;
   height: ${props => props.size ? props.size : 36}px;
-  // border: 2px solid ${ColorPalette.ORANGE};
   background: ${ColorPalette.ORANGE};
   overflow: hidden;
   border-radius: 50%;

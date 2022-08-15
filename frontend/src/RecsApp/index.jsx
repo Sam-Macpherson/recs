@@ -10,6 +10,7 @@ import GroupsView from "./GroupsView";
 import LoginView from "./LoginView";
 import {useEffect, useState} from "react";
 import {getUser} from "../api/authenticate";
+import LogoutView from "./LogoutView";
 
 const Layout = styled.div`
   background-color: ${ColorPalette.GRAY};
@@ -37,6 +38,7 @@ const RecsApp = () => (
           <Routes path="/">
             <Route index element={<Navigate to="browse/" replace />} />
             <Route path="login/" element={<LoginView />} />
+            <Route path="logout/" element={<LogoutView />} />
             <Route path="browse/" element={<BrowseView />} />
             <Route path="rate/" element={<RateView />} />
             <Route path="friends/" element={<FriendsView />} />

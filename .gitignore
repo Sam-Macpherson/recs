@@ -19,3 +19,6 @@ djcelery/
 
 # Other
 env_settings.sh
+media/
+.media
+.env

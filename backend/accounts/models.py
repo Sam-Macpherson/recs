@@ -1,7 +1,11 @@
 from django.contrib.auth.models import AbstractUser, UserManager, make_password
 from django.db import models
 
+from django.core.files.storage import FileSystemStorage
+
 from base import BaseModel
+from recs import settings
+from recs.storage_backends import PublicImageStorage
 
 
 class CustomUserManager(UserManager):
@@ -30,6 +34,7 @@ class CustomUserManager(UserManager):
     def create_superuser(self, email=None, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("is_active", True)
 
         if extra_fields.get("is_staff") is not True:
             raise ValueError("Superuser must have is_staff=True.")
@@ -37,6 +42,15 @@ class CustomUserManager(UserManager):
             raise ValueError("Superuser must have is_superuser=True.")
 
         return self._create_user(email, password, **extra_fields)
+
+
+def image_filename(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_id/filename
+    return f'user_{instance.id}/{instance.profile_picture.name}'
+
+
+def select_storage():
+    return PublicImageStorage() if settings.USE_S3 else FileSystemStorage()
 
 
 class User(AbstractUser, BaseModel):
@@ -49,6 +63,16 @@ class User(AbstractUser, BaseModel):
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
+    profile_picture = models.ImageField(
+        null=True, blank=True,
+        storage=select_storage,
+        upload_to=image_filename,
+    )
+    bio = models.TextField(
+        null=True, blank=True,
+        max_length=1024,
+        help_text='An optional short bio for users to describe themselves.',
+    )
     username = None
 
     USERNAME_FIELD = 'email'

@@ -1,25 +1,33 @@
-from rest_framework import serializers
+"""Serializers for the users app."""
 
-from accounts.models import User
+from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
+
+from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
-
-    def create(self, validated_data):
-        password = validated_data.pop('password', None)
-        instance = self.Meta.model(**validated_data)
-
-        if password is not None:
-            # Django provided, hashes password.
-            instance.set_password(password)
-        instance.save()
-        return instance
+    email = serializers.EmailField(
+        required=True,
+        validators=[UniqueValidator(queryset=User.objects.all())]
+    )
 
     class Meta:
         model = User
-        fields = (
-            'id', 'email', 'password', 'name'
+        fields = [
+            'email',
+            'name',
+            'password',
+            'profile_picture',
+            'bio',
+        ]
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            email=validated_data['email'],
+            password=validated_data['password'],
+            name=validated_data['name'],
         )
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
+
+        return user

@@ -9,12 +9,14 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 from datetime import timedelta
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -26,10 +28,17 @@ SECRET_KEY = 'django-insecure-)v48eg4at6z^%_a-5@-51sqgv_@$_e__o9)-1t7$)q_&cn0ms1
 DEBUG = True
 
 ALLOWED_HOSTS = ["localhost"]
+
+FRONTEND_URL = 'http://localhost:1234'
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:1234",
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:1234",
+]
 
 
 # Application definition
@@ -42,7 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'storages',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'accounts',
     'recommendations',
     'socials',
@@ -54,7 +65,7 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'accounts.authenticate.CustomAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
 
@@ -181,7 +192,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+USE_S3 = os.getenv('USE_S3') == 'TRUE'
+
+if USE_S3:
+    # aws settings
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_DEFAULT_ACL = "public-read"
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = ''
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
+else:
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, '.media')
+
+STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
+
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

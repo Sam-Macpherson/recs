@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { FontSizes } from "../../../Typography";
 import { Avatar, Button, Input } from "../BaseComponents";
 import { Navigate, useMatch } from "react-router-dom";
-import { useState } from "react";
-import { login, register } from "../../api/authenticate";
+import {useEffect, useState} from "react";
+import {getUser, login, register} from "../../api/authenticate";
 
 const StyledHeader = styled.div`
   ${FontSizes.HUGE}
@@ -29,6 +29,11 @@ const ViewHeader = ({ title }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [redirect, setRedirect] = useState("");
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    getUser().then(user => setUser(user));
+  }, []);
 
   const submitLogin = async (e) => {
      e.preventDefault();
@@ -68,7 +73,7 @@ const ViewHeader = ({ title }) => {
           <>
             <Button primary>Give</Button>
             <Button>Request</Button>
-            <Avatar />
+            <Avatar image={user?.profile_picture}/>
           </>
         }
       </StyledActionButtons>
