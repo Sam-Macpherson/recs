@@ -10,7 +10,7 @@ from django.core.files.storage import FileSystemStorage
 
 def image_filename(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_id/filename
-    return f'piece_{instance.id}/{instance.picture}'
+    return f'pieces/{instance.id}/{instance.picture}'
 
 
 def select_storage():

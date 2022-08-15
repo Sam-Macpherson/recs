@@ -46,7 +46,7 @@ class CustomUserManager(UserManager):
 
 def image_filename(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_id/filename
-    return f'user_{instance.id}/{instance.profile_picture.name}'
+    return f'users/{instance.id}/{instance.profile_picture.name}'
 
 
 def select_storage():
