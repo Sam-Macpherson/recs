@@ -32,8 +32,10 @@ const ViewHeader = ({ title }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    getUser().then(user => setUser(user));
-  }, []);
+    if (!matchesLogin) {
+      getUser().then(user => setUser(user));
+    }
+  }, [matchesLogin]);
 
   const submitLogin = async (e) => {
      e.preventDefault();

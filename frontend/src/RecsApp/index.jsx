@@ -11,6 +11,7 @@ import LoginView from "./LoginView";
 import {useEffect, useState} from "react";
 import {getUser} from "../api/authenticate";
 import LogoutView from "./LogoutView";
+import RecommendationProfile from "./RecProfile";
 
 const Layout = styled.div`
   background-color: ${ColorPalette.GRAY};
@@ -43,6 +44,7 @@ const RecsApp = () => (
             <Route path="rate/" element={<RateView />} />
             <Route path="friends/" element={<FriendsView />} />
             <Route path="groups/" element={<GroupsView />} />
+            <Route path="r/:id/" element={<RecommendationProfile />} />
           </Routes>
         </StyledMain>
       </Layout>

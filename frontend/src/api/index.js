@@ -31,18 +31,20 @@ client.interceptors.response.use(
           return Promise.reject(error);
       }
 
-      if (error.response.status === 401 && originalRequest.url === baseURL + '/accounts/refresh/') {
+      if (error.response.status === 401 && originalRequest.url === baseURL + 'accounts/refresh/') {
           window.location.href = '/login/';
           return Promise.reject(error);
       }
+      console.log("meta", originalRequest.url, baseURL);
       console.log(error.response.data.detail, error.response.status, error.response.statusText);
       if ((error.response.data.detail === 'Authentication credentials were not provided.'
         || error.response.data.detail === 'Given token not valid for any token type')
         && error.response.status === 401
         && error.response.statusText === 'Unauthorized') {
           const refreshToken = localStorage.getItem('refresh_token');
-
-          if (refreshToken) {
+          console.log('refresh token', refreshToken);
+          if (refreshToken && refreshToken !== "undefined") {
+            console.log("somehow investigating token:", typeof refreshToken);
               const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
 
               // exp date in token is expressed in seconds, while now() returns milliseconds:
@@ -70,7 +72,7 @@ client.interceptors.response.use(
                   window.location.href = '/login/';
               }
           } else {
-              console.log('Refresh token not available.');
+              console.error('Refresh token not available.');
               window.location.href = '/login/';
           }
       }
